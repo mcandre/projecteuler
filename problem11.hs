@@ -1,6 +1,6 @@
 #!/usr/bin/env runhaskell
 
-import Data.List (sort, transpose)
+import Data.List (transpose)
 
 grid = [
 		[08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08],
@@ -31,8 +31,8 @@ rows = length
 cols :: [[a]] -> Int
 cols = length . head
 
-greatest :: (Ord a) => [a] -> a
-greatest = last . sort
+greatest :: (Ord a, Num a) => [a] -> a
+greatest = foldl max 0
 
 horizontal :: [[Integer]] -> [[Integer]]
 horizontal m = [ (take 4 . drop i . (m !!)) r | r <- [0 .. (rows m - 1)], i <- [0 .. (cols m - 4)] ]
