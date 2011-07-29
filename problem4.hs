@@ -6,7 +6,7 @@ palindrome n = s == reverse s
 		s = show n
 
 products :: Int -> [Int]
-products n = map (\(x,y) -> x * y) [ (x,y) | x <- [1..n], y <- [1..n] ]
+products n = map (uncurry (*)) [ (x,y) | x <- [1..n], y <- [1..n] ]
 
 palindromeProducts :: Int -> [Int]
 palindromeProducts n = filter palindrome $ products n

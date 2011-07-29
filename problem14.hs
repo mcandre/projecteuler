@@ -22,23 +22,22 @@ collatz n
 hailstone :: Integer -> [Integer]
 hailstone n
 	| n <= 1 = [1]
-	| otherwise = n:(hailstone (collatz n))
+	| otherwise = n:hailstone (collatz n)
 
 maxLength :: [a] -> [a] -> [a]
-maxLength xs ys = if (length ys) > (length xs) then
+maxLength xs ys = if length ys > length xs then
 		ys
 	else
 		xs
 
 longestChainIn :: [Integer] -> [Integer]
-longestChainIn = (foldl maxLength [] . map hailstone)
+longestChainIn = foldl maxLength [] . map hailstone
 
 longestChainUnder :: Integer -> Integer
-longestChainUnder n = do
-	head $ (evens :: [Integer]) `par` (odds :: [Integer]) `pseq` maxLength evens odds
-		where
-			evens = longestChainIn [0, 2 .. n]
-			odds = longestChainIn [1, 3 .. n]
+longestChainUnder n = head $ (evens :: [Integer]) `par` (odds :: [Integer]) `pseq` maxLength evens odds
+	where
+		evens = longestChainIn [0, 2 .. n]
+		odds = longestChainIn [1, 3 .. n]
 
 main :: IO ()
 main = putStrLn $ show $ longestChainUnder 1000000
