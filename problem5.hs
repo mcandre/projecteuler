@@ -1,5 +1,8 @@
 #!/usr/bin/env runhaskell
 
+import Control.Parallel.Strategies
+import Control.Parallel
+
 import Data.List (sort)
 
 allDivisorsOf :: [Integer] -> Integer -> Bool
@@ -9,7 +12,7 @@ lcd :: [Integer] -> Integer
 lcd xs = head fs
 	where
 		(s:ss) = reverse $ sort xs
-		ms = map (* s) [1..]
+		ms = (parMap rseq) (* s) [1..]
 		fs = filter (allDivisorsOf ss) ms
 
 main :: IO ()

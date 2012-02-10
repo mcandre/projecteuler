@@ -8,7 +8,8 @@
 --
 -- ./problem14 +RTS -N2
 
-import Control.Parallel (par, pseq)
+import Control.Parallel.Strategies
+import Control.Parallel
 import Data.List (maximumBy)
 
 -- From Andrew Pennebaker
@@ -31,7 +32,7 @@ maxLength xs ys = if length ys > length xs then
 		xs
 
 longestChainIn :: [Integer] -> [Integer]
-longestChainIn = foldl maxLength [] . map hailstone
+longestChainIn = foldl maxLength [] . (parMap rseq) hailstone
 
 longestChainUnder :: Integer -> Integer
 longestChainUnder n = head $ (evens :: [Integer]) `par` (odds :: [Integer]) `pseq` maxLength evens odds

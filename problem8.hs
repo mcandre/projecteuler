@@ -1,10 +1,13 @@
 #!/usr/bin/env runhaskell
 
+import Control.Parallel.Strategies
+import Control.Parallel
+
 readDigit :: Char -> Int
 readDigit c = read [c]
 
 greatestProductFiveDigits :: String -> Int
-greatestProductFiveDigits s = greatestProductFiveDigits' $ map readDigit s
+greatestProductFiveDigits s = greatestProductFiveDigits' $ (parMap rseq) readDigit s
 	where
 		greatestProductFiveDigits' :: [Int] -> Int
 		greatestProductFiveDigits' (a:b:c:d:e:f) = max (a * b * c * d * e) $ greatestProductFiveDigits' (b:c:d:e:f)
