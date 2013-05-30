@@ -6,7 +6,7 @@
 --
 -- Run
 --
--- ./problem14 +RTS -N2
+-- ./problem14 +RTS -N
 
 import Control.Parallel.Strategies
 import Control.Parallel
@@ -17,28 +17,27 @@ import Data.List (maximumBy)
 
 collatz :: Integer -> Integer
 collatz n
-	| even n = n `div` 2
-	| otherwise = 3 * n + 1
+  | even n = n `div` 2
+  | otherwise = 3 * n + 1
 
 hailstone :: Integer -> [Integer]
 hailstone n
-	| n <= 1 = [1]
-	| otherwise = n:hailstone (collatz n)
+  | n <= 1 = [1]
+  | otherwise = n:hailstone (collatz n)
 
 maxLength :: [a] -> [a] -> [a]
-maxLength xs ys = if length ys > length xs then
-		ys
-	else
-		xs
+maxLength xs ys
+  | length ys > length xs = ys
+  | otherwise = xs
 
 longestChainIn :: [Integer] -> [Integer]
-longestChainIn = foldl maxLength [] . (parMap rseq) hailstone
+longestChainIn = foldl maxLength [] . parMap rseq hailstone
 
 longestChainUnder :: Integer -> Integer
 longestChainUnder n = head $ (evens :: [Integer]) `par` (odds :: [Integer]) `pseq` maxLength evens odds
-	where
-		evens = longestChainIn [0, 2 .. n]
-		odds = longestChainIn [1, 3 .. n]
+  where
+    evens = longestChainIn [0, 2 .. n]
+    odds = longestChainIn [1, 3 .. n]
 
 main :: IO ()
-main = putStrLn $ show $ longestChainUnder 1000000
+main = (print . longestChainUnder) 1000000

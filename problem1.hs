@@ -16,4 +16,4 @@ ns :: [Int]
 ns = filter multipleThreeOrFive [1..999]
 
 main :: IO ()
-main = putStrLn $ show $ sum ns
+main = (print . sum) ns

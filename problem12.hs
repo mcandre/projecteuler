@@ -14,12 +14,12 @@ isqrt = floor . sqrt . fromIntegral
 
 divisors :: Integer -> [Integer]
 divisors 1 = [1]
-divisors n = ks ++ (parMap rseq) (n `div`) ks
-	where
-		ks = [ k | k <- [1 .. (isqrt n)], n `mod` k == 0 ]
+divisors n = ks ++ parMap rseq (n `div`) ks
+  where
+    ks = [ k | k <- [1 .. (isqrt n)], n `mod` k == 0 ]
 
 triangleWithDivisors :: Integer -> Integer
-triangleWithDivisors n = head $ filter ((>= n) . fromIntegral . length . divisors) $ (parMap rseq) triangle [1 ..]
+triangleWithDivisors n = head $ filter ((>= n) . fromIntegral . length . divisors) $ parMap rseq triangle [1 ..]
 
 main :: IO ()
-main = putStrLn $ show $ triangleWithDivisors 500
+main = (print . triangleWithDivisors) 500
