@@ -14,10 +14,16 @@
 
 # DEVELOPMENT
 
-Test solvers as you make code changes:
+Test solutions as you make code changes:
 
-    $ bundle exec guard
+    $ make guard
     > ...
+
+## Linting
+
+Keep the code tidy:
+
+    $ make lint
 
 # EXAMPLE
 
