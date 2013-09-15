@@ -10,7 +10,10 @@
 
 ## Optional
 
-* [Ruby](http://www.ruby-lang.org)
+* [Ruby](http://www.ruby-lang.org) 1.9+
+* [Guard](http://guardgem.org/) 1.8.2+
+
+Use `bundle` to install Guard.
 
 # DEVELOPMENT
 
