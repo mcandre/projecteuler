@@ -10,7 +10,7 @@ primes :: (Integral a) => [a]
 primes = sieve [2..]
 
 prime :: (Integral a) => a -> Bool
-prime n = elem n $ fst $ break (> n) primes
+prime n = elem n $ takeWhile (>= n) primes
 
 divisorAndPrime :: Integer -> Integer -> Bool
 divisorAndPrime n k = n `mod` k == 0 && prime k
