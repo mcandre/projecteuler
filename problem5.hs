@@ -2,16 +2,13 @@
 
 -- Compile
 --
--- ghc -O2 --make problem5.hs -threaded -rtsopts
+-- ghc -O2 --make problem5.hs
 --
 -- Run
 --
--- ./problem5.hs +RTS -N
+-- ./problem5 +RTS -N
 
-import Control.Parallel.Strategies
-import Control.Parallel
-
-import Data.List (sort)
+import Data.List (sortBy)
 
 allDivisorsOf :: [Integer] -> Integer -> Bool
 allDivisorsOf ns n = all ((0 ==) . (n `mod`)) ns
@@ -19,8 +16,8 @@ allDivisorsOf ns n = all ((0 ==) . (n `mod`)) ns
 lcd :: [Integer] -> Integer
 lcd xs = head fs
   where
-    (s:ss) = (reverse . sort) xs
-    ms = parMap rseq (* s) [1..]
+    (s:ss) = (sortBy (flip compare)) xs
+    ms = map (* s) [1..]
     fs = filter (allDivisorsOf ss) ms
 
 main :: IO ()
