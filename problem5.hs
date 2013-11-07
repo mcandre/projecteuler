@@ -16,7 +16,7 @@ allDivisorsOf ns n = all ((0 ==) . (n `mod`)) ns
 lcd :: [Integer] -> Integer
 lcd xs = head fs
   where
-    (s:ss) = (sortBy (flip compare)) xs
+    (s:ss) = sortBy (flip compare) xs
     ms = map (* s) [1..]
     fs = filter (allDivisorsOf ss) ms
 
