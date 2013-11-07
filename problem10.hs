@@ -18,7 +18,7 @@ primes :: (Integral a) => [a]
 primes = sieve [2..]
 
 sumPrimesBelow :: Integer -> Integer
-sumPrimesBelow n = (sum . fst . break (>= n)) primes
+sumPrimesBelow n = (sum . takeWhile (< n)) primes
 
 main :: IO ()
 main = (print . sumPrimesBelow) 2000000

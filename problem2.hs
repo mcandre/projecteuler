@@ -2,30 +2,29 @@
 
 -- Compile
 --
--- ghc -O2 --make problem2.hs -threaded -rtsopts
+-- ghc -O2 --make problem2.hs -package MemoTrie
 --
 -- Run
 --
--- ./problem2 +RTS -N
+-- ./problem2
 
-import Control.Parallel.Strategies
-import Control.Parallel
+import Data.MemoTrie (memo)
 
-memoizedFib :: Int -> Integer
-memoizedFib = (parMap rseq fib [0..] !!)
+fib :: Integer -> Integer
+fib = memo fib'
   where
-    fib 0 = 0
-    fib 1 = 1
-    fib n = memoizedFib (n - 2) + memoizedFib (n - 1)
+    fib' 0 = 0
+    fib' 1 = 1
+    fib' n = fib' (n - 2) + fib' (n - 1)
 
 fibSeq :: [Integer]
-fibSeq = parMap rseq memoizedFib [0..]
+fibSeq = map fib [0..]
 
 evenFibs :: [Integer]
 evenFibs = filter even fibSeq
 
 ns :: [Integer]
-ns = fst $ break (>= 4000000) evenFibs
+ns = takeWhile (< 4000000) evenFibs
 
 main :: IO ()
 main = (print . sum) ns
