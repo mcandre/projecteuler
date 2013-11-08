@@ -1,11 +1,11 @@
 guard :shell do
-  watch("Gemfile") do |m|
-    title = "Bundler output"
-    msg = "Bundler Failure"
+  watch('Gemfile') do |m|
+    title = 'Bundler output'
+    msg = 'Bundler Failure'
     status = :failed
 
-    if system("bundle")
-      msg = "Bundled"
+    if `bundle`
+      msg = 'Bundled'
       status = :status
     end
 
@@ -15,8 +15,8 @@ guard :shell do
   end
 
   watch(/(.+)\.hs/) do |m|
-    title = "Test output"
-    msg = "Haskell error"
+    title = 'Test output'
+    msg = 'Haskell error'
     status = :failed
 
     output = `runhaskell #{m[1]}`
