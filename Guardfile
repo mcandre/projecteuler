@@ -1,10 +1,9 @@
 guard :shell do
   watch(/(.+)\.hs/) do |m|
     title = 'Test'
-    msg = `runhaskell #{m[0]}`
+    eager "runhaskell #{m[0]}"
     status = ($?.success? && :success) || :failed
-
-    n msg, title, status
-    "-> #{msg}"
+    n '', title, status
+    ''
   end
 end
