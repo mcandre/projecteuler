@@ -1,8 +1,10 @@
 # projecteuler - This fellow's solutions to Project Euler problems
 
+Also see [euler: HARD MODE](https://github.com/mcandre/euler-hard-mode).
+
 # HOMEPAGE
 
-[http://projecteuler.net/](http://projecteuler.net/)
+http://projecteuler.net/
 
 # REQUIREMENTS
 
