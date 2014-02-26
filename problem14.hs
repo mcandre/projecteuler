@@ -8,9 +8,9 @@
 --
 -- ./problem14 +RTS -N
 
-import Control.Parallel.Strategies
-import Control.Parallel
 import Data.List (maximumBy)
+import Control.Parallel.Strategies (parMap, rseq)
+import Control.Parallel (par, pseq)
 
 -- From Andrew Pennebaker
 -- https://github.com/mcandre/cspace

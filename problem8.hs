@@ -8,8 +8,7 @@
 --
 -- ./problem8.hs +RTS -N
 
-import Control.Parallel.Strategies
-import Control.Parallel
+import Control.Parallel.Strategies (parMap, rseq)
 
 readDigit :: Char -> Int
 readDigit c = read [c]

@@ -8,8 +8,7 @@
 --
 -- ./problem6.hs +RTS -N
 
-import Control.Parallel.Strategies
-import Control.Parallel
+import Control.Parallel.Strategies (parMap, rseq)
 
 squareSums :: Integer -> Integer
 squareSums n = sum [1..n] ^ 2

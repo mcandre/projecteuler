@@ -1,7 +1,6 @@
 #!/usr/bin/env runhaskell
 
-import Control.Parallel.Strategies
-import Control.Parallel
+import Control.Parallel.Strategies (parMap, rseq)
 
 triangle :: Integer -> Integer
 triangle 1 = 1

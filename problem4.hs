@@ -8,8 +8,7 @@
 --
 -- ./problem4 +RTS -N
 
-import Control.Parallel.Strategies
-import Control.Parallel
+import Control.Parallel.Strategies (parMap, rseq)
 
 palindrome :: Int -> Bool
 palindrome n = s == reverse s
