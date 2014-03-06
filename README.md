@@ -6,6 +6,10 @@ Also see [euler: HARD MODE](https://github.com/mcandre/euler-hard-mode).
 
 http://projecteuler.net/
 
+# EXAMPLE
+
+    $ runhaskell problem1.hs
+
 # REQUIREMENTS
 
 * [Haskell](http://www.haskell.org)
@@ -14,15 +18,13 @@ http://projecteuler.net/
 
 * [Ruby](http://www.ruby-lang.org) 1.9+
 * [Guard](http://guardgem.org/) 1.8.2+
+* [aspelllint](https://github.com/mcandre/aspelllint)
 
-Use `bundle` to install Guard.
+Install Guard and aspelllint:
+
+    $ bundle
 
 # DEVELOPMENT
-
-Test solutions as you make code changes:
-
-    $ make guard
-    > ...
 
 ## Linting
 
@@ -30,6 +32,14 @@ Keep the code tidy:
 
     $ make lint
 
-# EXAMPLE
+## Spell Check
 
-    $ runhaskell problem1.hs
+    $ aspelllint
+    ...
+
+## Local CI
+
+Test solutions as you make code changes:
+
+    $ make guard
+    > ...
