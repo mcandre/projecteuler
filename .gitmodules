@@ -1,3 +1,3 @@
 [submodule "euler535"]
 	path = euler535
-	url = git@github.com:mcandre/euler535.git
+	url = https://github.com/mcandre/euler535.git
